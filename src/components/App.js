@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     if(searchkey>0&&searchkey<=100){
-      setcurrpost(posts[searchkey])
+      setcurrpost(posts[searchkey-1])
     }
     else{
       console.log(searchkey);
