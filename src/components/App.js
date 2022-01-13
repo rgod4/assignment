@@ -52,7 +52,6 @@ function App() {
       style={{ width: '18rem' }}
       className="mb-2"
     >
-      <Card.Header>Header</Card.Header>
       <Card.Body>
         <Card.Title>{currpost.title}</Card.Title>
         <Card.Text>
