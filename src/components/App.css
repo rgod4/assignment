@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+}
+
+/* body{
+  background-color: #282c34;
+  color: white;
+} */
+
+
+.box{
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+input{
+  display: block;
+  margin: auto;
+}
+
+#postbox{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+}
