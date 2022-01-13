@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import './App.css';
+import {Form,Alert,Card } from 'react-bootstrap';
 import axios from 'axios';
-const initial={
-  title:"",
-  body:""
+const initial = {
+  title: "",
+  body: ""
 };
 
 function App() {
@@ -22,10 +23,10 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if(searchkey>0&&searchkey<=100){
-      setcurrpost(posts[searchkey])
+    if (searchkey > 0 && searchkey <= 100) {
+      setcurrpost(posts[searchkey - 1])
     }
-    else{
+    else {
       console.log(searchkey);
       setcurrpost(initial);
     }
@@ -37,31 +38,57 @@ function App() {
     setkey(Number(e.target.value));
   }
 
-  let searchbox=(
-    <div id='searchbox'>
-      <input type="Number" value={searchkey} onChange={handlechange} placeholder='Enter Your post number'></input>
-    </div>)
+  let searchbox = (
+    <Form>
+      <Form.Group className='mb3' controlId='formGroupSearch'>
+        <Form.Control type="Number" onChange={handlechange} placeholder="Search" />
+      </Form.Group>
+    </Form>
+  )
 
   let postbox = (
-      <div id='postbox'>
-        <h2 id="postTitle">{currpost.title}</h2>
-      <p id="postbody">{currpost.body}</p>
-      </div>
-    )
+    <Card
+      bg="primary"
+      text={'white'}
+      style={{ width: '18rem' }}
+      className="mb-2"
+    >
+      <Card.Header>Header</Card.Header>
+      <Card.Body>
+        <Card.Title>{currpost.title}</Card.Title>
+        <Card.Text>
+          {currpost.body}
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  )
 
 
-  if(currpost!==initial)
+  if (currpost !== initial)
     return (
-    <div className='box'>
-    {searchbox}
-    {postbox}
-    </div>)
-  else{
-    return (
+      <>
       <div className='box'>
-      {searchbox}
-      <div className='message'>Enter PostId in range [1,100] to get a post</div>
-      </div>)
+        {searchbox}
+      </div>
+      <div className='box'>
+        {postbox}
+      </div>
+      </>
+        )
+  else {
+    return (
+      <>
+      <div className='box'>
+        {searchbox}
+      </div>
+      <div className='box'>
+        <Alert variant="danger">
+          <p>
+            Enter PostId in range [1,100] to see a post!
+          </p>
+        </Alert>
+      </div>
+      </>)
   }
 }
 
